@@ -16,11 +16,12 @@ import java.util.List;
 @Service
 public class BoardService {
 
-    @Autowired
-    private BoardRepository boardRepository;
+    private final BoardRepository boardRepository;
 
     @Autowired
-    private CommentRepository commentRepository;
+    public BoardService(BoardRepository boardRepository) {
+        this.boardRepository = boardRepository;
+    }
 
     public List<BoardResDTO> getBoardList() {
          return boardRepository.findAll()

@@ -12,11 +12,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class CommentService {
 
-    @Autowired
-    BoardRepository boardRepository;
+
+    private final BoardRepository boardRepository;
+    private final CommentRepository commentRepository;
 
     @Autowired
-    CommentRepository commentRepository;
+    public CommentService(BoardRepository boardRepository, CommentRepository commentRepository) {
+        this.boardRepository = boardRepository;
+        this.commentRepository = commentRepository;
+    }
 
     public CommentResDTO uploadComment(CommentReqDTO commentReqDTO) {
         CommentEntity comment = new CommentEntity(
